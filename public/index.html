@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width= device-width, initial-scale=1" >
+        <meta name="mobile-web-app-capable" content="yes">
+        <title>NYSL- Northside Youth Soccer League</title>
+        <!--ICONOS-->
+        <link rel="shortcut icon" sizes="196x196" href="images/logo.png">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!--BOOTSTRAP-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <!--CSS-->
+        <link rel="stylesheet" href="style/style.css" type="text/css">
+        
+    </head>
+    <body >
+        <div id="app">
+            <header>
+                                   
+                <img src="images/logo.png" alt="logo" id="logo" >
+                <h1><b>NYSL</b></h1>
+                <div  id="panelSuperior">
+                   
+                    <span id="registro" @click="openNav()" ><i class="far fa-user" style='font-size:20px'></i></span>
+                    <div id="noLogged" class="sidenav">
+                      <a class="closebtn" @click="closeNav()">&times;</a>
+                      <button type="button" @click="login()" class="btn btn-block btn-primary"> Log In with Google</button>
+                    </div>
+                    <div id="logged" class="sidenav">
+                        <a class="closebtn" @click="closeNav()">&times;</a>
+                        <img id="userpic" :src="user.photoURL" alt="profile_photo">
+                        <div class="userInfo">
+                            <p><b>{{user.displayName}}</b></p>
+                            <p>{{user.email}}</p>
+                        </div>
+                        
+                        <button type="button" @click="logout()" class="btn btn-block btn-primary"> Log Out</button>
+                    </div>
+                </div>
+
+           </header>
+            <component :is="view" :games= "games" :locations="locations" :teams-object="teamsObject" :teams="teams" :meses-validos="mesesValidos"  :all-month="allMonths" :user="user"></component>
+           <div class="navbar navbar-expand" id="panelInferior">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a @click = "view = 'home_games'" class="nav-link"><i class="fas fa-home"></i><br>Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a @click = "view = 'schule'" class="nav-link"><i class="far fa-calendar-alt"></i><br>Schedule</a>
+                  </li>
+                  <li class="nav-item">
+                      <a @click = "view = 'location'" class="nav-link"><i class="fas fa-map-marker-alt"></i><br>Locations</a>
+                  </li>
+                  <li class="nav-item">
+                      <a @click = "view = 'contact'" class="nav-link"><i class="fas fa-address-book"></i><br>Contact</a>
+                  </li>
+              </ul>
+               
+           </div>
+            
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+       
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+
+        <script>
+          // Your web app's Firebase configuration
+          var firebaseConfig = {
+            apiKey: "AIzaSyBJjP75gvtKckAY3jjbx5ikAlzT2byTgBk",
+            authDomain: "nysl-webapp-gso.firebaseapp.com",
+            databaseURL: "https://nysl-webapp-gso.firebaseio.com",
+            projectId: "nysl-webapp-gso",
+            storageBucket: "",
+            messagingSenderId: "705683629831",
+            appId: "1:705683629831:web:2940db5d09f512ffb587a2",
+            measurementId: "G-W6H91B6PBS"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          firebase.analytics();
+        </script>
+        
+        <script src="js/json.js"></script>
+        <script src="js/scripts.js"></script>
+  
+<!--         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    </body>
+</html>
